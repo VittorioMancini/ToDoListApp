@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-3">
+            <label>Task</label>
+            <input type="text" class="form-control" (input)="onDescriptionTask($event)" [(ngModel)]="taskName">
+        </div>
+        <div class="col-xs-3">
+            <button class="btn btn-primary" [disabled]="!checkDescription" (click)="onCreateTask()">Aggiungi Task</button>
+        </div>
+        <div class="col-xs-3"></div>
+    </div>
+</div>
+<hr>
+<div class="container" *ngIf="taskItem.length != 0">
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table">
+                <tr>
+                    <th>Nome Task</th>
+                    <th>Completato</th>
+                    <th>Elimina</th>
+                </tr>
+                <tr *ngFor="let variable of taskItem; let i = index">
+                    <td contenteditable="true" (blur)="onEditTask(i, $event)">{{variable}}</td>
+                    <td><button class="btn btn-success check" (click)="onTaskCompleted(i, $event)">Completato</button></td>
+                    <td><button class="btn btn-danger button" (click)="onDeleteTask(i)">Elimina Task</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<div class="container" *ngIf="taskItemCompleted.length != 0">
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table">
+                <tr>
+                    <th>Task Completati</th>
+                </tr>
+                <tr *ngFor="let variable of taskItemCompleted">
+                    <td>{{variable}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
